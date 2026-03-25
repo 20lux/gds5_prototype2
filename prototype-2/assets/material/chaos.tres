@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://ctoo635n1k4km"]
+
+[ext_resource type="Shader" uid="uid://dxgar2bolh5dv" path="res://shaders/chaos.gdshader" id="1_0shm3"]
+
+[resource]
+shader = ExtResource("1_0shm3")
+shader_parameter/chaos = 1.0
+shader_parameter/radius = 0.5
+shader_parameter/attenuation = 2.0

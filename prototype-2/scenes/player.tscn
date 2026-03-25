@@ -2,24 +2,346 @@
 
 [ext_resource type="Script" uid="uid://2pdfwxxpuacp" path="res://scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bjyrjm5bb50i1" path="res://scripts/camera.gd" id="2_g2els"]
+[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="2_qlg0r"]
+[ext_resource type="Script" uid="uid://njusfqmforiw" path="res://scripts/animator.gd" id="3_qhqgy"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_tuyoq"]
+[ext_resource type="AudioStream" uid="uid://c8dgeeskksfew" path="res://audio/Drink_06.wav" id="6_tuyoq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjrip"]
+render_priority = 0
+shader = ExtResource("2_qlg0r")
+shader_parameter/color = Color(0, 0, 1, 1)
+shader_parameter/shadow = 0.43600002071
+shader_parameter/shadow_width = 0.0010000000475
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.0
+shader_parameter/_specular_strength = 0.1990000094525
+shader_parameter/_glossiness = 0.0490000023275
+shader_parameter/_rim_size = 0.9710000461225
+shader_parameter/_rim_smoothness = 0.01
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_qhqgy"]
+top_radius = 0.1
+bottom_radius = 0.001
+height = 0.3
+radial_segments = 8
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y4r1p"]
+render_priority = 0
+shader = ExtResource("2_qlg0r")
+shader_parameter/color = Color(1, 1, 0, 1)
+shader_parameter/shadow = 0.078000003705
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.08800000418
+shader_parameter/_glossiness = 0.4690000222775
+shader_parameter/_rim_size = 0.6310000299725
+shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3v2ag"]
+top_radius = 0.001
+bottom_radius = 0.001
+height = 0.15
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
+render_priority = 0
+shader = ExtResource("2_qlg0r")
+shader_parameter/color = Color(0, 1, 0, 1)
+shader_parameter/shadow = 0.5530000262675
+shader_parameter/shadow_width = 0.0010000000475
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.25
+shader_parameter/_glossiness = 0.054000002564999997
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_y4r1p"]
+radius = 0.02
+height = 0.05
+radial_segments = 8
+rings = 4
 
 [sub_resource type="Environment" id="Environment_g2els"]
 background_mode = 1
+background_color = Color(1, 1, 1, 1)
+
+[sub_resource type="Animation" id="Animation_g2els"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../RightHand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.36715195, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RightHand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.3962555, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RightHand:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.7669603, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RightHand:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.20542525, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RightHand:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../RightHand:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_qhqgy"]
+resource_name = "drink"
+length = 3.0
+step = 0.9
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../RightHand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.36715195, -0.25, 0, 0.25, 0, 0.0027337968, -0.06687407, 0.06073636, 0, 0, 0.0027337968, -0.06687407, 0.06073636, 0, 0, 0.0027337968, -0.022099193, 0, 0, 0, 0.0027337968, -0.016334187, 0, 0, 0, 0.36715195, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.32419968, 1, 1.7666667, 2, 2.7666667)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RightHand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(1.3962555, -0.25, 0, 0.25, 0, 1.5, -0.06687407, -0.049559515, 0, 0, 1.5, -0.06687407, -0.049559515, 0, 0, 1.5, -0.022099193, 0, 0, 0, 1.6, -0.016334187, -0.011144142, 0, 0, 1.3962555, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.32419968, 1, 1.7666667, 2, 2.7666667)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RightHand:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(-0.7669603, -0.25, 0, 0.25, 0, -0.66457343, -0.06687407, -0.017064482, 0, 0, -0.66457343, -0.06687407, -0.017064482, 0, 0, -0.7439754, -0.022099193, 0.013233663, 0, 0, -0.8003926, -0.016334187, 0.009402872, 0, 0, -0.7669603, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.32419968, 1, 1.7666667, 2, 2.7666667)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RightHand:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0.20542525, -0.25, 0, 0.25, 0, 1.2526228, -0.06687407, -0.17453294, 0, 0, 1.2526228, -0.06687407, -0.17453294, 0, 0, 0.20542526, -0.022099193, 0.17453294, 0, 0, 0.20542526, -0.016334187, 0, 0, 0, 0.20542525, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.32419968, 1, 1.7666667, 2, 2.7666667)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RightHand:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.06687407, 0, 0, 0, 0, -0.06687407, 0, 0, 0, 0, -0.022099193, 0, 0, 0, 0, -0.016334187, 0, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.32419968, 1, 1.7666667, 2, 2.7666667)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../RightHand:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0, 0, 0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 0, -0.06687407, 0, 0, 0, 0, -0.06687407, 0, 0, 0, 0, -0.022099193, 0, 0, 0, 0, -0.016334187, 0, 0, 0, 0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.32419968, 1, 1.7666667, 2, 2.7666667)
+}
+
+[sub_resource type="Animation" id="Animation_dqkch"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../RightHand:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.36715195, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../RightHand:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1.3962555, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "bezier"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../RightHand:position:z")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-0.7669603, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/3/type = "bezier"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../RightHand:rotation:x")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.20542525, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/4/type = "bezier"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("../RightHand:rotation:y")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/5/type = "bezier"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("../RightHand:rotation:z")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qlg0r"]
+_data = {
+&"RESET": SubResource("Animation_g2els"),
+&"drink": SubResource("Animation_qhqgy"),
+&"idle": SubResource("Animation_dqkch")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1703939526]
-collision_mask = 8
+[node name="Player" type="CharacterBody3D" unique_id=1703939526 node_paths=PackedStringArray("playerAnimation", "camera")]
+collision_mask = 14
 slide_on_ceiling = false
 script = ExtResource("1_3vyb7")
+playerAnimation = NodePath("Animator")
+camera = NodePath("Head/Camera3D")
 
-[node name="Head" type="Node3D" parent="." unique_id=447277889]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -0.017)
+[node name="RightHand" type="Node3D" parent="." unique_id=420776174]
+transform = Transform3D(1, 0, 0, 0, 0.97897434, -0.20398349, 0, 0.20398349, 0.97897434, 0.36715195, 1.3962555, -0.7669603)
+
+[node name="CocktailGlass" type="MeshInstance3D" parent="RightHand" unique_id=1099291303]
+material_override = SubResource("ShaderMaterial_fjrip")
+material_overlay = ExtResource("3_tuyoq")
+mesh = SubResource("CylinderMesh_qhqgy")
+
+[node name="Toothpick" type="MeshInstance3D" parent="RightHand" unique_id=1359530209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.038973153, 0.20840669, -0.04060352)
+material_override = SubResource("ShaderMaterial_y4r1p")
+material_overlay = ExtResource("3_tuyoq")
+mesh = SubResource("CylinderMesh_3v2ag")
+
+[node name="Olive" type="MeshInstance3D" parent="RightHand/Toothpick" unique_id=16858478]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00049865246, -0.035008192, -0.0011176467)
+material_override = SubResource("ShaderMaterial_tuyoq")
+material_overlay = ExtResource("3_tuyoq")
+mesh = SubResource("SphereMesh_y4r1p")
+
+[node name="Olive2" type="MeshInstance3D" parent="RightHand/Toothpick" unique_id=719918405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00049865246, 0.008528948, -0.0006030202)
+material_override = SubResource("ShaderMaterial_tuyoq")
+material_overlay = ExtResource("3_tuyoq")
+mesh = SubResource("SphereMesh_y4r1p")
+
+[node name="Head" type="Node3D" parent="." unique_id=447277889 node_paths=PackedStringArray("playerController")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7259259, -0.23341064)
 script = ExtResource("2_g2els")
+playerController = NodePath("..")
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=76887036]
 environment = SubResource("Environment_g2els")
 fov = 55.0
 
+[node name="Animator" type="Node3D" parent="." unique_id=74472285 node_paths=PackedStringArray("animationPlayer", "audioPlayer")]
+script = ExtResource("3_qhqgy")
+animationPlayer = NodePath("AnimationPlayer")
+audioPlayer = NodePath("Slurp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Animator" unique_id=593848359]
+libraries/ = SubResource("AnimationLibrary_qlg0r")
+autoplay = &"idle"
+
+[node name="Slurp" type="AudioStreamPlayer3D" parent="Animator" unique_id=116024985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7336676, 0)
+stream = ExtResource("6_tuyoq")
+attenuation_filter_db = -6.0
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=401879816]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_u8vuu")

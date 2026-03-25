@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cdslwm64o620d"
+path="res://.godot/imported/Space Collisions.ogg-7c73dfdd88a5b13ef26763bfcdda6b1c.oggvorbisstr"
+
+[deps]
+
+source_file="res://audio/Space Collisions.ogg"
+dest_files=["res://.godot/imported/Space Collisions.ogg-7c73dfdd88a5b13ef26763bfcdda6b1c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

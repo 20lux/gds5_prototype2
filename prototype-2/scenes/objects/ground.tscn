@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cvttp4dry13vp"]
+
+[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="1_y1upl"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yldxj"]
+plane = Plane(0, 20, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0f05"]
+render_priority = 0
+shader = ExtResource("1_y1upl")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_colour = Color(1, 1, 1, 0.7058824)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 1.0
+shader_parameter/_rim_smoothness = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_f0p7x"]
+lightmap_size_hint = Vector2i(102, 102)
+material = SubResource("ShaderMaterial_a0f05")
+size = Vector2(20, 20)
+subdivide_width = 20
+subdivide_depth = 20
+
+[node name="NO_Ground" type="StaticBody3D" unique_id=62942153 groups=["surfaces"]]
+collision_layer = 8
+metadata/_edit_group_ = true
+
+[node name="NO_Ground" type="CollisionShape3D" parent="." unique_id=187238956 groups=["surfaces"]]
+shape = SubResource("WorldBoundaryShape3D_yldxj")
+
+[node name="NO_Ground" type="MeshInstance3D" parent="NO_Ground" unique_id=903427538 groups=["surfaces"]]
+mesh = SubResource("PlaneMesh_f0p7x")

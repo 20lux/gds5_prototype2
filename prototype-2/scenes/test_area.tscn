@@ -2,97 +2,182 @@
 
 [ext_resource type="Script" uid="uid://nkdn2x4u2yml" path="res://scripts/game_controller.gd" id="1_f0p7x"]
 [ext_resource type="PackedScene" uid="uid://cllto57kg4v5y" path="res://scenes/player.tscn" id="1_yldxj"]
-[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="3_vtm10"]
+[ext_resource type="PackedScene" uid="uid://cvttp4dry13vp" path="res://scenes/objects/ground.tscn" id="3_vtm10"]
+[ext_resource type="PackedScene" uid="uid://cc6phro7ent6v" path="res://scenes/objects/wall.tscn" id="4_a0f05"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="5_plljx"]
+[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="6_3fd14"]
+[ext_resource type="Shader" uid="uid://c17cksqlh2bui" path="res://shaders/light.gdshader" id="7_61pjd"]
+[ext_resource type="AudioStream" uid="uid://br4crkauos2d0" path="res://audio/Caves.ogg" id="7_ggu47"]
+[ext_resource type="AudioStream" uid="uid://bt7fl5w5ihnwo" path="res://audio/Currents.ogg" id="8_61pjd"]
+[ext_resource type="Texture2D" uid="uid://brgi88urijyh5" path="res://assets/textures/perlin-noise-small.png" id="8_plljx"]
+[ext_resource type="AudioStream" uid="uid://vggfvqgng5qy" path="res://audio/Experiment G.ogg" id="9_plljx"]
+[ext_resource type="AudioStream" uid="uid://cchx3f3o27pep" path="res://audio/Test Subject.ogg" id="10_dlp1t"]
+[ext_resource type="AudioStream" uid="uid://id47iyiinue0" path="res://audio/Tribal Chaos.ogg" id="11_xqnh6"]
+[ext_resource type="AudioStream" uid="uid://cesl8xm8lvxa5" path="res://audio/Wicked beast.ogg" id="12_wjarl"]
+[ext_resource type="AudioStream" uid="uid://cdslwm64o620d" path="res://audio/Space Collisions.ogg" id="13_qfqyx"]
+[ext_resource type="AudioStream" uid="uid://c4mpmf6mlj2ti" path="res://audio/Anti Matter Magic.ogg" id="14_fsfll"]
+[ext_resource type="AudioStream" uid="uid://bnu4nfs6co3vv" path="res://audio/Simulation Unknown.ogg" id="15_ktw23"]
+[ext_resource type="Material" uid="uid://ctoo635n1k4km" path="res://assets/material/chaos.tres" id="18_dlp1t"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_yldxj"]
-plane = Plane(0, 20, 0, 0)
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_a0f05"]
+height = 1.0
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0f05"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_576i8"]
 render_priority = 0
-shader = ExtResource("3_vtm10")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_colour = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.5
-shader_parameter/_rim_smoothness = 0.01
+shader = ExtResource("6_3fd14")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/shadow = 0.66000003135
+shader_parameter/shadow_width = 0.0010000000475
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.0
+shader_parameter/_specular_strength = 0.25
+shader_parameter/_glossiness = 0.10000000475
+shader_parameter/_rim_size = 0.62800002983
+shader_parameter/_rim_smoothness = 0.146000006935
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_f0p7x"]
-material = SubResource("ShaderMaterial_a0f05")
-size = Vector2(20, 20)
+[sub_resource type="CylinderMesh" id="CylinderMesh_a0f05"]
+material = SubResource("ShaderMaterial_576i8")
+height = 1.0
+cap_bottom = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_plljx"]
+render_priority = 0
+shader = ExtResource("7_61pjd")
+shader_parameter/noise_texture = ExtResource("8_plljx")
+shader_parameter/colour = Color(0.3019608, 0.85490197, 0.69411767, 1)
+shader_parameter/layers = 5
+shader_parameter/speed = 0.10000000149012
+shader_parameter/depth_amount = 1.0
+shader_parameter/fade_amount = 1.0099999774244801
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ggu47"]
+material = SubResource("ShaderMaterial_plljx")
+top_radius = 0.001
+bottom_radius = 5.0
+height = 25.0
+
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_3fd14"]
+shuffle = true
+stream_count = 9
+stream_0 = ExtResource("7_ggu47")
+stream_1 = ExtResource("8_61pjd")
+stream_2 = ExtResource("9_plljx")
+stream_3 = ExtResource("10_dlp1t")
+stream_4 = ExtResource("11_xqnh6")
+stream_5 = ExtResource("12_wjarl")
+stream_6 = ExtResource("13_qfqyx")
+stream_7 = ExtResource("14_fsfll")
+stream_8 = ExtResource("15_ktw23")
 
 [node name="TestArea" type="Node3D" unique_id=361818705]
 script = ExtResource("1_f0p7x")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=2139555978]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 13.90426, 0)
-omni_range = 16.121313
+[node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=398105729 groups=["lights"]]
+transform = Transform3D(1, 0, 0, 0, 0.5641171, 0.82569486, 0, -0.82569486, 0.5641171, 0, 13.90426, 0)
 
 [node name="Player" parent="." unique_id=1703939526 instance=ExtResource("1_yldxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0749397, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0749397, -3.4276004)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1769154362]
-collision_layer = 8
+[node name="Level" type="Node3D" parent="." unique_id=644201373]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1213194754]
-shape = SubResource("WorldBoundaryShape3D_yldxj")
+[node name="Surfaces" type="Node3D" parent="Level" unique_id=1843582771]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D" unique_id=579398880]
-mesh = SubResource("PlaneMesh_f0p7x")
+[node name="Floors" type="Node3D" parent="Level/Surfaces" unique_id=761057724]
 
-[node name="StaticBody3D6" type="StaticBody3D" parent="." unique_id=126585416]
-transform = Transform3D(1, 0, 0, 0, -1, -8.742278e-08, 0, 8.742278e-08, -1, 0, 20, 0)
-collision_layer = 8
+[node name="NO_Ground" parent="Level/Surfaces/Floors" unique_id=62942153 instance=ExtResource("3_vtm10")]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D6" unique_id=1965011935]
-shape = SubResource("WorldBoundaryShape3D_yldxj")
+[node name="NO_Ground2" parent="Level/Surfaces/Floors" unique_id=1893928236 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D6/CollisionShape3D" unique_id=1125151284]
-mesh = SubResource("PlaneMesh_f0p7x")
+[node name="NO_Ground3" parent="Level/Surfaces/Floors" unique_id=30410775 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1960685423]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 8, 10)
-collision_layer = 8
+[node name="NO_Ground4" parent="Level/Surfaces/Floors" unique_id=1650455184 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=433683277]
-shape = SubResource("WorldBoundaryShape3D_yldxj")
+[node name="NO_Ground5" parent="Level/Surfaces/Floors" unique_id=1604412478 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2/CollisionShape3D" unique_id=1419878582]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0000005)
-mesh = SubResource("PlaneMesh_f0p7x")
+[node name="NO_Ground6" parent="Level/Surfaces/Floors" unique_id=225738494 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 20)
 
-[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1256122876]
-transform = Transform3D(-1, 8.742278e-08, 3.821371e-15, 0, -4.371139e-08, 1, 8.742278e-08, 1, 4.371139e-08, 0, 8, -10)
-collision_layer = 8
+[node name="NO_Ground7" parent="Level/Surfaces/Floors" unique_id=1016370192 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=557584500]
-shape = SubResource("WorldBoundaryShape3D_yldxj")
+[node name="NO_Ground8" parent="Level/Surfaces/Floors" unique_id=1423593682 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3/CollisionShape3D" unique_id=1667410541]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0000005)
-mesh = SubResource("PlaneMesh_f0p7x")
+[node name="NO_Ground9" parent="Level/Surfaces/Floors" unique_id=496409851 instance=ExtResource("3_vtm10")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -20)
 
-[node name="StaticBody3D4" type="StaticBody3D" parent="." unique_id=2113454254]
-transform = Transform3D(1.3113416e-07, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, -1.3113416e-07, -5.7320566e-15, -10, 8, 0)
-collision_layer = 8
+[node name="Walls" type="Node3D" parent="Level/Surfaces" unique_id=1750883964]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D4" unique_id=830392154]
-shape = SubResource("WorldBoundaryShape3D_yldxj")
+[node name="NO_Wall" parent="Level/Surfaces/Walls" unique_id=368771854 instance=ExtResource("4_a0f05")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -20, 2, -30)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D4/CollisionShape3D" unique_id=448578930]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0000005)
-mesh = SubResource("PlaneMesh_f0p7x")
+[node name="NO_Wall2" parent="Level/Surfaces/Walls" unique_id=1280366493 instance=ExtResource("4_a0f05")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2, -30)
 
-[node name="StaticBody3D5" type="StaticBody3D" parent="." unique_id=21639720]
-transform = Transform3D(-4.371138e-08, -1, -4.371139e-08, 0, -4.371139e-08, 1, -1, 4.371138e-08, 1.9106857e-15, 10, 8, 0)
-collision_layer = 8
+[node name="NO_Wall3" parent="Level/Surfaces/Walls" unique_id=921944740 instance=ExtResource("4_a0f05")]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 20, 2, -30)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D5" unique_id=296099084]
-shape = SubResource("WorldBoundaryShape3D_yldxj")
+[node name="NO_Wall4" parent="Level/Surfaces/Walls" unique_id=83817766 instance=ExtResource("4_a0f05")]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -30, 2, 20)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D5/CollisionShape3D" unique_id=115687552]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.0000005)
-mesh = SubResource("PlaneMesh_f0p7x")
+[node name="NO_Wall5" parent="Level/Surfaces/Walls" unique_id=141319814 instance=ExtResource("4_a0f05")]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -30, 2, 0)
+
+[node name="NO_Wall6" parent="Level/Surfaces/Walls" unique_id=1037955368 instance=ExtResource("4_a0f05")]
+transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -30, 2, -20)
+
+[node name="NO_Wall7" parent="Level/Surfaces/Walls" unique_id=1955582753 instance=ExtResource("4_a0f05")]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 20, 2, 30)
+
+[node name="NO_Wall8" parent="Level/Surfaces/Walls" unique_id=397375346 instance=ExtResource("4_a0f05")]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 2, 30)
+
+[node name="NO_Wall9" parent="Level/Surfaces/Walls" unique_id=202582107 instance=ExtResource("4_a0f05")]
+transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -20, 2, 30)
+
+[node name="NO_Wall10" parent="Level/Surfaces/Walls" unique_id=1849665816 instance=ExtResource("4_a0f05")]
+transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 30, 2, -20)
+
+[node name="NO_Wall11" parent="Level/Surfaces/Walls" unique_id=423233204 instance=ExtResource("4_a0f05")]
+transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 30, 2, 0)
+
+[node name="NO_Wall12" parent="Level/Surfaces/Walls" unique_id=1413764207 instance=ExtResource("4_a0f05")]
+transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 30, 2, 20)
+
+[node name="Objects" type="Node3D" parent="Level" unique_id=693777133]
+
+[node name="Table" type="RigidBody3D" parent="Level/Objects" unique_id=1225141698]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5285574, 0)
+collision_layer = 2
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Objects/Table" unique_id=1539104367]
+shape = SubResource("CylinderShape3D_a0f05")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Objects/Table/CollisionShape3D" unique_id=2051395744]
+material_overlay = ExtResource("5_plljx")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_a0f05")
+
+[node name="Lights" type="MeshInstance3D" parent="Level/Objects" unique_id=1969853942 groups=["lights"]]
+transform = Transform3D(0.9253355, 0.37914932, 0, -0.37914932, 0.9253355, 0, 0, 0, 1, 5.752659, 8.828949, 10.837823)
+layers = 2
+material_overlay = ExtResource("5_plljx")
+mesh = SubResource("CylinderMesh_ggu47")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=595355482]
+
+[node name="WorldAudio" type="Node3D" parent="CanvasLayer" unique_id=468584283]
+
+[node name="ClubAudio" type="AudioStreamPlayer3D" parent="CanvasLayer/WorldAudio" unique_id=767119017]
+stream = SubResource("AudioStreamPlaylist_3fd14")
+autoplay = true
+
+[node name="Chaos" type="ColorRect" parent="CanvasLayer" unique_id=1414841116]
+material = ExtResource("18_dlp1t")
+offset_right = 1158.0
+offset_bottom = 653.0
