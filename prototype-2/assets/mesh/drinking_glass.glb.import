@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bw36bdhulonjv"
-path="res://.godot/imported/arms_low_poly.glb-542e68378a08923bbf22d6bd69d1b0b5.scn"
+uid="uid://dbrtts64k7ppt"
+path="res://.godot/imported/drinking_glass.glb-aaf88c1af3c9173027fa9ff5de194703.scn"
 
 [deps]
 
-source_file="res://assets/mesh/arms_low_poly.glb"
-dest_files=["res://.godot/imported/arms_low_poly.glb-542e68378a08923bbf22d6bd69d1b0b5.scn"]
+source_file="res://assets/mesh/drinking_glass.glb"
+dest_files=["res://.godot/imported/drinking_glass.glb-aaf88c1af3c9173027fa9ff5de194703.scn"]
 
 [params]
 
@@ -34,9 +34,9 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=1
 materials/extract_format=0
-materials/extract_path=""
+materials/extract_path="res://assets/material"
 _subresources={}
 gltf/naming_version=2
 gltf/embedded_image_handling=1

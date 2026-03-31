@@ -4,23 +4,20 @@ class_name PlayerController
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 
-@export_group("Animation")
-@export var playerAnimation : PlayerAnimation
+@export_group("Drinking")
+@export var drink : PlayerDrink
 
 @export_group("Head Bob")
 @export var camera : Camera3D
 @export var headBobFrequency := 2.0
 @export var headBobAmplitude := 0.04
 var headBobTime := 0.0
+var step : int = 0
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -36,19 +33,12 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# head bob positions
-	headBobTime += delta  * velocity.length() * float(is_on_floor())
-	camera.transform.origin = HeadBob(headBobTime)
-	
-	# trigger player animation
-	if Input.is_action_just_pressed("action"):
-		playerAnimation.Drink()
-		IncreaseDrunk()
+	if !drink.isDrinking:
+		headBobTime += delta  * velocity.length() * float(is_on_floor())
+		camera.transform.origin = HeadBob(headBobTime)
 	
 func HeadBob(headbob_time):
 	var headBobPos = Vector3.ZERO
 	headBobPos.y = sin(headbob_time * headBobFrequency) * headBobAmplitude
 	headBobPos.x = cos(headbob_time * headBobFrequency / 2) * headBobAmplitude
 	return headBobPos
-
-func IncreaseDrunk() -> void:
-	pass

@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c6qq66li8c26b"]
+
+[ext_resource type="PackedScene" uid="uid://nixwbbl3eh4h" path="res://assets/mesh/StickMan.glb" id="1_qnfdn"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="2_1s5r2"]
+[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="2_phok2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2kdov"]
+render_priority = 0
+shader = ExtResource("2_phok2")
+shader_parameter/color = Color(1, 0, 0, 1)
+shader_parameter/shadow = 1.0
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.0
+shader_parameter/_rim_smoothness = 0.0
+
+[node name="StickMan" unique_id=1450767425 instance=ExtResource("1_qnfdn")]
+
+[node name="Cube" parent="Armature/Skeleton3D" parent_id_path=PackedInt32Array(468929681) index="0" unique_id=897374206]
+material_override = SubResource("ShaderMaterial_2kdov")
+material_overlay = ExtResource("2_1s5r2")
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=2054432765]
+autoplay = &"SitckMan_Dance"

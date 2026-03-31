@@ -1,27 +1,14 @@
 [gd_scene format=3 uid="uid://cc6phro7ent6v"]
 
-[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="1_y1upl"]
+[ext_resource type="Material" uid="uid://cpdrtcx8vxrv1" path="res://scenes/materials/flat.tres" id="1_y1upl"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_y1upl"]
 size = Vector3(20, 4, 0.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_a0f05"]
-render_priority = 0
-shader = ExtResource("1_y1upl")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/shadow = 1.0
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 0.0
-shader_parameter/_rim_smoothness = 0.0
-
 [sub_resource type="PlaneMesh" id="PlaneMesh_f0p7x"]
 lightmap_size_hint = Vector2i(102, 102)
-material = SubResource("ShaderMaterial_a0f05")
-size = Vector2(20, 4)
+material = ExtResource("1_y1upl")
+size = Vector2(20, 20)
 subdivide_width = 20
 subdivide_depth = 20
 
@@ -35,5 +22,5 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 shape = SubResource("BoxShape3D_y1upl")
 
 [node name="NO_Wall" type="MeshInstance3D" parent="NO_Wall" unique_id=903427538 groups=["surfaces"]]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -10, 8.742278e-07)
 mesh = SubResource("PlaneMesh_f0p7x")

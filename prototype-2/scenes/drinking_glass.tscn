@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://dmmw0m8f8j0c7"]
+
+[ext_resource type="PackedScene" uid="uid://dbrtts64k7ppt" path="res://assets/mesh/drinking_glass.glb" id="1_u70qm"]
+[ext_resource type="Material" uid="uid://103dxgvac7od" path="res://assets/material/glassTraslucent.tres" id="2_51b41"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_cgplk"]
+[ext_resource type="Shader" uid="uid://b3ciek1vbtp6q" path="res://shaders/void.gdshader" id="4_5xn65"]
+[ext_resource type="Texture2D" uid="uid://brgi88urijyh5" path="res://assets/textures/perlin-noise-small.png" id="5_7y0n2"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tay0e"]
+render_priority = 0
+shader = ExtResource("4_5xn65")
+shader_parameter/noise_texture = ExtResource("5_7y0n2")
+shader_parameter/colour = Color(0.90588236, 0.61960787, 0, 1)
+shader_parameter/layers = 12
+shader_parameter/speed = 0.10000000149012
+shader_parameter/depth_amount = 8.0
+shader_parameter/fade_amount = 2.999999932944
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tngus"]
+material = SubResource("ShaderMaterial_tay0e")
+top_radius = 0.035
+bottom_radius = 0.035
+height = 0.2
+radial_segments = 8
+cap_bottom = false
+
+[node name="drinking_glass" unique_id=1795061668 instance=ExtResource("1_u70qm")]
+
+[node name="VasoLargo" parent="." index="0" unique_id=1712339961]
+material_override = ExtResource("2_51b41")
+material_overlay = ExtResource("3_cgplk")
+
+[node name="LiquidVoid" type="MeshInstance3D" parent="." index="1" unique_id=1960944620]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12282601, 0)
+mesh = SubResource("CylinderMesh_tngus")
