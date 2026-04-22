@@ -3,25 +3,92 @@
 [ext_resource type="PackedScene" uid="uid://dbrtts64k7ppt" path="res://assets/mesh/drinking_glass.glb" id="1_u70qm"]
 [ext_resource type="Material" uid="uid://103dxgvac7od" path="res://assets/material/glassTraslucent.tres" id="2_51b41"]
 [ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_cgplk"]
-[ext_resource type="Shader" uid="uid://b3ciek1vbtp6q" path="res://shaders/void.gdshader" id="4_5xn65"]
 [ext_resource type="Texture2D" uid="uid://brgi88urijyh5" path="res://assets/textures/perlin-noise-small.png" id="5_7y0n2"]
+
+[sub_resource type="Shader" id="Shader_cgplk"]
+code = "shader_type spatial;
+render_mode unshaded;
+
+uniform sampler2D noise_texture;
+
+group_uniforms depth;
+uniform vec3 colour : source_color = vec3(1.0, 0.0, 0.0);
+uniform int layers : hint_range(0, 64, 1) = 8;
+uniform float speed : hint_range(0.0, 1.0, 0.1) = 0.5;
+uniform float depth_amount = 1.0;
+uniform float fade_amount : hint_range(0.0, 3.0, 0.01) = 1.0;
+
+vec2 to_polar(vec2 uv) {
+	uv = uv * 2.0 - 1.0;
+	float radius = length(uv);
+	float angle = atan(uv.x, uv.y);
+	return vec2(angle / PI, radius) / 2.0;
+}
+
+float overlay(float a, float b){
+	float limit = step(0.5, a);
+	return mix(2.0 * a * b, 1.0 - 2.0 * (1.0 - a) * (1.0 - b), limit);
+}
+
+vec2 parallax(float depth, vec3 n, vec3 t, vec3 v) {
+	vec3 normal = normalize(n);
+	vec3 tangent = normalize(t);
+	vec3 bitangent = cross(normal, tangent);
+	vec3 view = normalize(v);
+	vec3 view_tangent = vec3(dot(view, tangent), dot(view, bitangent), dot(view, normal));
+	vec2 offset = (view_tangent.xy / max(view_tangent.z, 0.001)) * depth;
+	offset = vec2(-offset.x, offset.y);
+	
+	return offset;
+}
+
+void fragment() {
+	float value = 0.0;
+	
+	for(int i = 0; i < layers; i++){
+		float t = float(i) / float(layers);
+		float depth = t * depth_amount;
+		
+		vec2 circle_uv = UV + parallax(depth, NORMAL, TANGENT, VIEW);
+		float circle = length(circle_uv * 2.0 - 1.0);
+		
+		circle = clamp((circle - 0.2) / 0.8, 0.0, 1.0);
+		
+		vec2 noise_uv = UV + parallax(depth, NORMAL, TANGENT, VIEW);
+		noise_uv = to_polar(noise_uv);
+		noise_uv.y += TIME * speed * 0.1;
+		noise_uv += t;
+		float noise = texture(noise_texture, noise_uv).r;
+		
+		float layer_value = overlay(circle, noise);
+		layer_value = step(0.5, layer_value);
+		
+		layer_value *= pow(1.0 - t, fade_amount);
+		
+		value = max(value, layer_value);
+	}
+	
+	ALBEDO = vec3(value) * colour;
+	
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tay0e"]
 render_priority = 0
-shader = ExtResource("4_5xn65")
+shader = SubResource("Shader_cgplk")
 shader_parameter/noise_texture = ExtResource("5_7y0n2")
-shader_parameter/colour = Color(0.90588236, 0.61960787, 0, 1)
-shader_parameter/layers = 12
-shader_parameter/speed = 0.10000000149012
-shader_parameter/depth_amount = 8.0
-shader_parameter/fade_amount = 2.999999932944
+shader_parameter/colour = Color(0.40392157, 0.40784314, 0.67058825, 1)
+shader_parameter/layers = 6
+shader_parameter/speed = 0.5000000074506
+shader_parameter/depth_amount = 20.0
+shader_parameter/fade_amount = 0.999999977648
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_tngus"]
 material = SubResource("ShaderMaterial_tay0e")
 top_radius = 0.035
 bottom_radius = 0.035
 height = 0.2
-radial_segments = 8
+radial_segments = 13
 cap_bottom = false
 
 [node name="drinking_glass" unique_id=1795061668 instance=ExtResource("1_u70qm")]

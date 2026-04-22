@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c4nefefyaub5k"]
+
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="1_nqudl"]
+[ext_resource type="ArrayMesh" uid="uid://cqhfu38pwq32u" path="res://assets/mesh/gt_couch.obj" id="2_gefux"]
+[ext_resource type="Material" uid="uid://4vq2awc2dw5f" path="res://scenes/materials/flat_grey.tres" id="3_65748"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5l4dj"]
+size = Vector3(3.024475, 2.7998047, 6.1532593)
+
+[node name="Couch" type="StaticBody3D" unique_id=421652158]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=187074334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31192017, 1.3927307, 1.3475647)
+shape = SubResource("BoxShape3D_5l4dj")
+
+[node name="GtCouch" type="MeshInstance3D" parent="." unique_id=1915551503]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, -0.15945244, 0.6478815, 1.2753097)
+material_overlay = ExtResource("1_nqudl")
+mesh = ExtResource("2_gefux")
+surface_material_override/0 = ExtResource("3_65748")
+surface_material_override/1 = ExtResource("3_65748")
+surface_material_override/2 = ExtResource("3_65748")
+surface_material_override/3 = ExtResource("3_65748")
+surface_material_override/4 = ExtResource("3_65748")
+surface_material_override/5 = ExtResource("3_65748")
+surface_material_override/6 = ExtResource("3_65748")

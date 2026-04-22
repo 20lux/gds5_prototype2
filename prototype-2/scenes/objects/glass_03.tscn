@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://blh8xwngg0ah3"]
+
+[ext_resource type="PackedScene" uid="uid://b1o7f7fkxo7og" path="res://assets/mesh/glass_03.glb" id="1_xjl3h"]
+[ext_resource type="Material" uid="uid://cpdrtcx8vxrv1" path="res://scenes/materials/flat.tres" id="2_xjl3h"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_kiqmt"]
+
+[node name="glass_03" unique_id=101642388 instance=ExtResource("1_xjl3h")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CopaVino" parent="." index="0" unique_id=814708958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.014009, 0, -0.0059092045)
+material_override = ExtResource("2_xjl3h")
+material_overlay = ExtResource("3_kiqmt")
+cast_shadow = 0

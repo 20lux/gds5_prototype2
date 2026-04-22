@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://c0h3mqcuunyrk"]
+
+[ext_resource type="PackedScene" uid="uid://cjpvjbsqc1iuf" path="res://assets/mesh/door.glb" id="1_xm0wp"]
+[ext_resource type="Material" uid="uid://4vq2awc2dw5f" path="res://scenes/materials/flat_grey.tres" id="2_xm0wp"]
+[ext_resource type="Shader" uid="uid://b71c4r3lau64l" path="res://shaders/outline.gdshader" id="3_xm0wp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w0irj"]
+render_priority = 0
+shader = ExtResource("3_xm0wp")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0
+
+[node name="door" unique_id=274973625 instance=ExtResource("1_xm0wp")]
+
+[node name="Door" parent="." index="0" unique_id=1110740060]
+material_override = ExtResource("2_xm0wp")
+material_overlay = SubResource("ShaderMaterial_w0irj")

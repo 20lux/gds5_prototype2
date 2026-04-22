@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bxb1vnbvxaifp"]
+
+[ext_resource type="PackedScene" uid="uid://dk1c75e8sidov" path="res://assets/mesh/bottle_02.glb" id="1_8m5fg"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="2_vt75t"]
+
+[node name="bottle_02" unique_id=509486289 instance=ExtResource("1_8m5fg")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, -0.75077105, 0, 0.74062556)
+
+[node name="BotellaWiskey" parent="." index="0" unique_id=141543089]
+material_overlay = ExtResource("2_vt75t")
+cast_shadow = 0

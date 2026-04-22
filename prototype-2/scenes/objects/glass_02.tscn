@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bfn00t48h03l8"]
+
+[ext_resource type="PackedScene" uid="uid://cj57jyajt56cl" path="res://assets/mesh/glass_02.glb" id="1_jqq66"]
+[ext_resource type="Material" uid="uid://cpdrtcx8vxrv1" path="res://scenes/materials/flat.tres" id="2_jqq66"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_mvvf2"]
+
+[node name="glass_02" unique_id=675726636 instance=ExtResource("1_jqq66")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CopaChampan" parent="." index="0" unique_id=171724492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008433461, 0.4862175, 0.106796026)
+material_override = ExtResource("2_jqq66")
+material_overlay = ExtResource("3_mvvf2")
+cast_shadow = 0

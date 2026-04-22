@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bkq5ge65f5cq"]
+
+[ext_resource type="PackedScene" uid="uid://32rpfygv18eo" path="res://assets/mesh/table.glb" id="1_7vqcc"]
+[ext_resource type="Material" uid="uid://4vq2awc2dw5f" path="res://scenes/materials/flat_grey.tres" id="2_ym3ej"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_mju53"]
+
+[node name="table" unique_id=2097539752 instance=ExtResource("1_7vqcc")]
+
+[node name="Cylinder" parent="." index="0" unique_id=1714334691]
+material_override = ExtResource("2_ym3ej")
+material_overlay = ExtResource("3_mju53")

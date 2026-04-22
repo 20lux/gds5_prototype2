@@ -5,47 +5,71 @@
 [ext_resource type="PackedScene" uid="uid://dmmw0m8f8j0c7" path="res://scenes/drinking_glass.tscn" id="2_oprun"]
 [ext_resource type="Script" uid="uid://njusfqmforiw" path="res://scripts/drink.gd" id="3_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://c8dgeeskksfew" path="res://audio/Drink_06.wav" id="6_tuyoq"]
+[ext_resource type="Shader" uid="uid://pgl1qnr0ijil" path="res://shaders/wobble.gdshader" id="7_fjrip"]
+[ext_resource type="FontFile" uid="uid://ka4l0dctfju6" path="res://assets/fonts/Kalam-Bold.otf" id="8_smehm"]
 [ext_resource type="Material" uid="uid://ctoo635n1k4km" path="res://assets/material/chaos.tres" id="15_l71n6"]
 
 [sub_resource type="Environment" id="Environment_g2els"]
 background_mode = 1
 background_color = Color(1, 1, 1, 1)
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_fjrip"]
+random_pitch = 1.122462
+random_volume_offset_db = 1.0
+streams_count = 1
+stream_0/stream = ExtResource("6_tuyoq")
+stream_0/weight = 5.0
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8vuu"]
 radius = 1.0
 height = 4.0
 
-[node name="Player" type="CharacterBody3D" unique_id=1703939526 node_paths=PackedStringArray("drink", "camera")]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_smehm"]
+shader = ExtResource("7_fjrip")
+shader_parameter/amplitude = 1.0
+shader_parameter/speed = 0.050000002375
+
+[sub_resource type="LabelSettings" id="LabelSettings_tuyoq"]
+font = ExtResource("8_smehm")
+font_size = 32
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(1, 1, 1, 0.49803922)
+shadow_offset = Vector2(5, 5)
+
+[node name="Player" type="CharacterBody3D" unique_id=1703939526 node_paths=PackedStringArray("camera", "drinkingGlass", "intrusiveThoughts") groups=["Player"]]
 collision_mask = 14
 slide_on_ceiling = false
 script = ExtResource("1_3vyb7")
-drink = NodePath("drinking_glass")
 camera = NodePath("Head/Camera3D")
+drinkingGlass = NodePath("drinking_glass")
+intrusiveThoughts = NodePath("CanvasLayer/Control")
 
-[node name="drinking_glass" parent="." unique_id=1795061668 node_paths=PackedStringArray("audioPlayer", "mouth", "rightHand", "head", "theVoid") instance=ExtResource("2_oprun")]
-transform = Transform3D(1, 0, 0, 0, 0.97897434, -0.20398349, 0, 0.20398349, 0.97897434, 0.36715195, 1.3962555, -0.7669603)
+[node name="drinking_glass" parent="." unique_id=1795061668 node_paths=PackedStringArray("audioPlayer", "mouth", "rightHand", "head", "theVoid") groups=["PlayerDrink"] instance=ExtResource("2_oprun")]
+transform = Transform3D(1, 0, 0, 0, 0.97897434, -0.20398349, 0, 0.20398349, 0.97897434, 0.36715195, 2.1219397, -0.7669603)
 script = ExtResource("3_qlg0r")
 audioPlayer = NodePath("../Control/Slurp")
 canvas = ExtResource("15_l71n6")
-mouth = NodePath("../Mouth")
+mouth = NodePath("../Head/Mouth")
 rightHand = NodePath("../RightHand")
 handSpeed = 3.0
 head = NodePath("../Head")
 theVoid = NodePath("../Void")
 
 [node name="RightHand" type="Node3D" parent="." unique_id=420776174]
-transform = Transform3D(1, 0, 0, 0, 0.97897434, -0.20398349, 0, 0.20398349, 0.97897434, 0.36715195, 1.3962555, -0.7669603)
-
-[node name="Mouth" type="Node3D" parent="." unique_id=1624247511]
-transform = Transform3D(1, 0, 0, 0, 0.30208713, -0.9532803, 0, 0.9532803, 0.30208713, 0.0020169914, 1.585532, -0.70859313)
+transform = Transform3D(1, 0, 0, 0, 0.97897434, -0.20398349, 0, 0.20398349, 0.97897434, 0.36715195, 2.1219397, -0.7669603)
 
 [node name="Void" type="Node3D" parent="." unique_id=1767609610]
 transform = Transform3D(1, 0, 0, 0, 0.72907615, 0.68443257, 0, -0.68443257, 0.72907615, 0, 7.2826834, 5.706021)
 
 [node name="Head" type="Node3D" parent="." unique_id=447277889 node_paths=PackedStringArray("playerController")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7259259, -0.23341064)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45161, -0.23341064)
 script = ExtResource("2_g2els")
 playerController = NodePath("..")
+
+[node name="Mouth" type="Node3D" parent="Head" unique_id=1624247511]
+transform = Transform3D(1, 0, 0, 0, -0.23688893, -0.9715368, 0, 0.9715368, -0.23688893, 0, 2.4442725, -0.6333098)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=76887036]
 environment = SubResource("Environment_g2els")
@@ -55,8 +79,10 @@ fov = 55.0
 
 [node name="Slurp" type="AudioStreamPlayer3D" parent="Control" unique_id=116024985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7336676, 0)
-stream = ExtResource("6_tuyoq")
-volume_db = 12.0
+stream = SubResource("AudioStreamRandomizer_fjrip")
+volume_db = 6.0
+pitch_scale = 0.8
+bus = &"SFX"
 attenuation_filter_db = -6.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=401879816]
@@ -69,3 +95,20 @@ shape = SubResource("CapsuleShape3D_u8vuu")
 material = ExtResource("15_l71n6")
 offset_right = 1158.0
 offset_bottom = 653.0
+
+[node name="Control" type="Control" parent="CanvasLayer" unique_id=1133643879]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 404.0
+offset_top = 272.0
+offset_right = 444.0
+offset_bottom = 312.0
+
+[node name="IntrusiveThoughts" type="Label" parent="CanvasLayer/Control" unique_id=1848726662]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_smehm")
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 23.0
+text = "Hello - is it me you're looking for"
+label_settings = SubResource("LabelSettings_tuyoq")

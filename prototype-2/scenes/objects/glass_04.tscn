@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://bm32akdwhkt1w"]
+
+[ext_resource type="PackedScene" uid="uid://bwcp0xodl045i" path="res://assets/mesh/glass_04.glb" id="1_cimhp"]
+[ext_resource type="Material" uid="uid://cpdrtcx8vxrv1" path="res://scenes/materials/flat.tres" id="2_cimhp"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_452dv"]
+
+[node name="glass_04" unique_id=1634160712 instance=ExtResource("1_cimhp")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="CopaMartini" parent="." index="0" unique_id=136790358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045151114, 0.4862175, -0.09520352)
+material_override = ExtResource("2_cimhp")
+material_overlay = ExtResource("3_452dv")
+cast_shadow = 0

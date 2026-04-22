@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://j11truu83y7c"]
+
+[ext_resource type="PackedScene" uid="uid://1oi7s50ib4ib" path="res://scenes/objects/birch_tree_autumn_1.tscn" id="1_utbgf"]
+[ext_resource type="PackedScene" uid="uid://bgytufwsp1htr" path="res://scenes/objects/birch_tree_autumn_2.tscn" id="2_a4311"]
+[ext_resource type="PackedScene" uid="uid://chcakasql1p24" path="res://scenes/objects/birch_tree_autumn_3.tscn" id="3_75wxx"]
+[ext_resource type="PackedScene" uid="uid://dvcde3d36g88e" path="res://scenes/objects/birch_tree_autumn_5.tscn" id="4_uv43f"]
+[ext_resource type="PackedScene" uid="uid://dsxxr8ec12p03" path="res://scenes/objects/birch_tree_autumn_4.tscn" id="5_261r1"]
+[ext_resource type="Texture2D" uid="uid://ctp7fcl4hwbnd" path="res://assets/material/surreal_foliage.tres" id="6_lmsql"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_764nf"]
+size = Vector2(4.5, 4.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e0uvj"]
+albedo_texture = ExtResource("6_lmsql")
+
+[node name="SafeSpace" type="Node3D" unique_id=1106406205]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="BirchTree_Autumn_1" parent="." unique_id=1421086316 instance=ExtResource("1_utbgf")]
+transform = Transform3D(0.5202049, 0, 0.85404146, 0, 1, 0, -0.85404146, 0, 0.5202049, -1.3472509, 0, 0.30029392)
+
+[node name="BirchTree_Autumn_2" parent="." unique_id=2073561135 instance=ExtResource("2_a4311")]
+transform = Transform3D(0.6792236, 0, -0.7339314, 0, 1, 0, 0.7339314, 0, 0.6792236, 0.5521898, 1.1920929e-07, 0.74572754)
+
+[node name="BirchTree_Autumn_8" parent="." unique_id=1708906630 instance=ExtResource("2_a4311")]
+transform = Transform3D(0.007190734, 0, -0.99997413, 0, 1, 0, 0.99997413, 0, 0.007190734, 1.7179208, 1.1920929e-07, -0.5566225)
+
+[node name="BirchTree_Autumn_3" parent="." unique_id=507651435 instance=ExtResource("3_75wxx")]
+transform = Transform3D(0.99985313, 0, 0.017138295, 0, 1, 0, -0.017138295, 0, 0.99985313, -1.8039684, -1.1920929e-07, -0.33900166)
+
+[node name="BirchTree_Autumn_7" parent="." unique_id=1330253061 instance=ExtResource("4_uv43f")]
+transform = Transform3D(0.7990869, 0, 0.6012155, 0, 1, 0, -0.6012155, 0, 0.7990869, -1.1694922, 1.1920929e-07, 1.114994)
+
+[node name="BirchTree_Autumn_4" parent="." unique_id=1870005538 instance=ExtResource("5_261r1")]
+transform = Transform3D(0.86935693, 0, -0.49418458, 0, 1, 0, 0.49418458, 0, 0.86935693, 1.3109987, -2.3841858e-07, 0.2822857)
+
+[node name="BirchTree_Autumn_5" parent="." unique_id=1001105482 instance=ExtResource("4_uv43f")]
+transform = Transform3D(0.41959468, 0, -0.90771157, 0, 1, 0, 0.90771157, 0, 0.41959468, 1.5651507, -1.1920929e-07, 1.3236971)
+
+[node name="BirchTree_Autumn_6" parent="." unique_id=327866217 instance=ExtResource("1_utbgf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12108326, 0, 1.3635502)
+
+[node name="Ground" type="MeshInstance3D" parent="." unique_id=1040929953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.089594364, 0.009255886, -0.17267704)
+mesh = SubResource("PlaneMesh_764nf")
+surface_material_override/0 = SubResource("StandardMaterial3D_e0uvj")

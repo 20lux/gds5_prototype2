@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c4wh5x27a27te"]
+
+[ext_resource type="PackedScene" uid="uid://c6qq66li8c26b" path="res://scenes/stick_man.tscn" id="1_jnshv"]
+
+[node name="WaitingMan01" unique_id=80987228 instance=ExtResource("1_jnshv")]
+
+[node name="AnimationPlayer" parent="." index="1" unique_id=550862834]
+autoplay = &"SitckMan_Waiting_002"

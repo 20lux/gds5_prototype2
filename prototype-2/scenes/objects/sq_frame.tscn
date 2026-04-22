@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://j2kjre1gqy21"]
+
+[ext_resource type="PackedScene" uid="uid://cr52ms7h008t" path="res://assets/mesh/sq_frame.glb" id="1_e8umv"]
+[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="2_6udyl"]
+[ext_resource type="Shader" uid="uid://b71c4r3lau64l" path="res://shaders/outline.gdshader" id="3_k6t1e"]
+[ext_resource type="Texture2D" uid="uid://cyxe8tlgnbevu" path="res://assets/textures/eye.png" id="4_e8umv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bonot"]
+render_priority = 0
+shader = ExtResource("2_6udyl")
+shader_parameter/color = Color(0.49411765, 0.44705883, 0.44313726, 1)
+shader_parameter/shadow = 1.0
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.0
+shader_parameter/_rim_smoothness = 0.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uoy88"]
+render_priority = 0
+shader = ExtResource("3_k6t1e")
+shader_parameter/outline_color = Color(0, 0, 0, 1)
+shader_parameter/outline_width = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_id2q8"]
+albedo_texture = ExtResource("4_e8umv")
+
+[node name="sq_frame" unique_id=16878452 instance=ExtResource("1_e8umv")]
+
+[node name="SQ_Frame" parent="." index="0" unique_id=1732984043]
+material_override = SubResource("ShaderMaterial_bonot")
+material_overlay = SubResource("ShaderMaterial_uoy88")
+
+[node name="SQ_Void" parent="SQ_Frame" index="0" unique_id=1808841697]
+material_override = SubResource("StandardMaterial3D_id2q8")

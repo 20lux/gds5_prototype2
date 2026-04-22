@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://co0r44lrvbp07"]
+
+[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="1_mmrn4"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="2_53fiq"]
+[ext_resource type="PackedScene" uid="uid://peudotift17o" path="res://scenes/objects/bottle_01.tscn" id="3_e2rtv"]
+[ext_resource type="PackedScene" uid="uid://bxb1vnbvxaifp" path="res://scenes/objects/bottle_02.tscn" id="4_h6upk"]
+[ext_resource type="PackedScene" uid="uid://crx2ai0qgfy3k" path="res://scenes/objects/bottle_03.tscn" id="5_vxsb6"]
+[ext_resource type="PackedScene" uid="uid://da2ne3gxnatsh" path="res://scenes/objects/glass_01.tscn" id="6_0wqoy"]
+[ext_resource type="PackedScene" uid="uid://bfn00t48h03l8" path="res://scenes/objects/glass_02.tscn" id="7_07qb6"]
+[ext_resource type="PackedScene" uid="uid://blh8xwngg0ah3" path="res://scenes/objects/glass_03.tscn" id="8_6gase"]
+[ext_resource type="PackedScene" uid="uid://bm32akdwhkt1w" path="res://scenes/objects/glass_04.tscn" id="9_ul8s6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bqohy"]
+size = Vector3(24.921906, 8.470972, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hnvfr"]
+render_priority = 0
+shader = ExtResource("1_mmrn4")
+shader_parameter/color = Color(0.49411765, 0.44705883, 0.44313726, 1)
+shader_parameter/shadow = 0.5
+shader_parameter/shadow_width = 0.0
+shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
+shader_parameter/_specular_smoothness = 0.01
+shader_parameter/_specular_strength = 0.075
+shader_parameter/_glossiness = 0.1
+shader_parameter/_rim_size = 0.5
+shader_parameter/_rim_smoothness = 0.01
+
+[sub_resource type="BoxMesh" id="BoxMesh_14jdl"]
+size = Vector3(8, 1.2, 1)
+
+[node name="Bar" type="StaticBody3D" unique_id=1039453968]
+collision_layer = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1330533802]
+shape = SubResource("BoxShape3D_bqohy")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1505168842]
+material_override = SubResource("ShaderMaterial_hnvfr")
+material_overlay = ExtResource("2_53fiq")
+mesh = SubResource("BoxMesh_14jdl")
+
+[node name="bottle_01" parent="." unique_id=464470879 instance=ExtResource("3_e2rtv")]
+transform = Transform3D(-0.049175512, 0, 0.087073356, 0, 0.1, 0, -0.087073356, 0, -0.049175512, -3.672951, 0.6, -0.13187242)
+
+[node name="bottle_04" parent="." unique_id=37652565 instance=ExtResource("3_e2rtv")]
+transform = Transform3D(-0.022369849, 0.09669421, -0.0122401295, 0.049175188, 0.0003543067, -0.0870728, -0.084150985, -0.025497166, -0.047628827, -1.9164926, 0.75221837, 0.25074458)
+
+[node name="bottle_02" parent="." unique_id=509486289 instance=ExtResource("4_h6upk")]
+transform = Transform3D(0.059741527, 0, 0.08019321, 0, 0.1, 0, -0.08019321, 0, 0.059741527, -3.1658168, 0.60041445, 0.7375728)
+
+[node name="bottle_03" parent="." unique_id=2136887333 instance=ExtResource("5_vxsb6")]
+transform = Transform3D(0.016251659, 0, 0.09867058, 0, 0.1, 0, -0.09867058, 0, 0.016251659, -2.2214177, 0.6, 1.0338264)
+
+[node name="glass_01" parent="." unique_id=1246866550 instance=ExtResource("6_0wqoy")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 3.2183635, 0.6, 0.25517786)
+
+[node name="glass_05" parent="." unique_id=387437665 instance=ExtResource("6_0wqoy")]
+transform = Transform3D(0.009340615, -0.056483246, 0.08199023, 0.098660074, 0.016315382, 0, -0.0133770155, 0.080891594, 0.05725036, 1.3288503, 0.7187085, 0.25517786)
+
+[node name="glass_02" parent="." unique_id=675726636 instance=ExtResource("7_07qb6")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 3.114706, 0.6, 1.3467162)
+
+[node name="glass_03" parent="." unique_id=101642388 instance=ExtResource("8_6gase")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 3.738071, 0.6, 2.03083)
+
+[node name="glass_04" parent="." unique_id=1634160712 instance=ExtResource("9_ul8s6")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 4.289848, 0.6, 0.30277368)

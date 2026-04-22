@@ -44,7 +44,7 @@ void fragment() {
 		vec2 circle_uv = UV + parallax(depth, NORMAL, TANGENT, VIEW);
 		float circle = length(circle_uv * 2.0 - 1.0);
 		
-		circle = clamp((circle - 0.7) / 0.9, 0.0, 0.8);
+		circle = clamp((circle - 0.2) / 0.8, 0.0, 1.0);
 		
 		vec2 noise_uv = UV + parallax(depth, NORMAL, TANGENT, VIEW);
 		noise_uv = to_polar(noise_uv);

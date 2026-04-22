@@ -8,15 +8,8 @@ plane = Plane(0, 20, 0, 0)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_a0f05"]
 render_priority = 0
 shader = ExtResource("1_y1upl")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/shadow = 0.5
-shader_parameter/shadow_width = 0.0
-shader_parameter/shadow_colour = Color(1, 1, 1, 0.7058824)
-shader_parameter/_specular_smoothness = 0.01
-shader_parameter/_specular_strength = 0.075
-shader_parameter/_glossiness = 0.1
-shader_parameter/_rim_size = 1.0
-shader_parameter/_rim_smoothness = 0.5
+shader_parameter/Pixel_Grid = Vector2(0, 0)
+shader_parameter/Blur_Amount = 2.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_f0p7x"]
 lightmap_size_hint = Vector2i(102, 102)

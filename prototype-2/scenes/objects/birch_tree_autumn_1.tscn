@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://1oi7s50ib4ib"]
+
+[ext_resource type="PackedScene" uid="uid://dux4g4phytmpp" path="res://assets/mesh/Ultimate Nature Pack - Jun 2019/FBX/BirchTree_Autumn_1.fbx" id="1_4oekp"]
+[ext_resource type="Material" uid="uid://by5jorgturywj" path="res://scenes/materials/tree_leaves.tres" id="2_4oekp"]
+
+[node name="BirchTree_Autumn_1" unique_id=1421086316 instance=ExtResource("1_4oekp")]
+
+[node name="BirchTree_Autumn_1" parent="." index="0" unique_id=578991756]
+surface_material_override/2 = ExtResource("2_4oekp")
+surface_material_override/3 = ExtResource("2_4oekp")

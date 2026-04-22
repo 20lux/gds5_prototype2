@@ -2,204 +2,49 @@
 
 [ext_resource type="Script" uid="uid://nkdn2x4u2yml" path="res://scripts/game_controller.gd" id="1_f0p7x"]
 [ext_resource type="PackedScene" uid="uid://cllto57kg4v5y" path="res://scenes/player.tscn" id="1_yldxj"]
-[ext_resource type="PackedScene" uid="uid://cvttp4dry13vp" path="res://scenes/objects/ground.tscn" id="3_vtm10"]
-[ext_resource type="PackedScene" uid="uid://cc6phro7ent6v" path="res://scenes/objects/wall.tscn" id="4_a0f05"]
-[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="5_plljx"]
-[ext_resource type="PackedScene" uid="uid://c6qq66li8c26b" path="res://scenes/stick_man.tscn" id="5_xqnh6"]
-[ext_resource type="Shader" uid="uid://w6hlxk6eoxa3" path="res://shaders/flat.gdshader" id="6_3fd14"]
-[ext_resource type="AudioStream" uid="uid://br4crkauos2d0" path="res://audio/Caves.ogg" id="7_ggu47"]
-[ext_resource type="AudioStream" uid="uid://bt7fl5w5ihnwo" path="res://audio/Currents.ogg" id="8_61pjd"]
-[ext_resource type="Material" uid="uid://b65i6gsdncpvm" path="res://assets/material/portal.tres" id="8_dlp1t"]
-[ext_resource type="AudioStream" uid="uid://vggfvqgng5qy" path="res://audio/Experiment G.ogg" id="9_plljx"]
-[ext_resource type="AudioStream" uid="uid://cchx3f3o27pep" path="res://audio/Test Subject.ogg" id="10_dlp1t"]
-[ext_resource type="AudioStream" uid="uid://id47iyiinue0" path="res://audio/Tribal Chaos.ogg" id="11_xqnh6"]
-[ext_resource type="AudioStream" uid="uid://cesl8xm8lvxa5" path="res://audio/Wicked beast.ogg" id="12_wjarl"]
-[ext_resource type="AudioStream" uid="uid://cdslwm64o620d" path="res://audio/Space Collisions.ogg" id="13_qfqyx"]
-[ext_resource type="AudioStream" uid="uid://c4mpmf6mlj2ti" path="res://audio/Anti Matter Magic.ogg" id="14_fsfll"]
-[ext_resource type="AudioStream" uid="uid://bnu4nfs6co3vv" path="res://audio/Simulation Unknown.ogg" id="15_ktw23"]
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_a0f05"]
-height = 1.0
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_576i8"]
-render_priority = 0
-shader = ExtResource("6_3fd14")
-shader_parameter/color = Color(1, 0, 0, 1)
-shader_parameter/shadow = 0.66000003135
-shader_parameter/shadow_width = 0.0010000000475
-shader_parameter/shadow_color = Color(0.705, 0.705, 0.705, 0.705)
-shader_parameter/_specular_smoothness = 0.0
-shader_parameter/_specular_strength = 0.25
-shader_parameter/_glossiness = 0.10000000475
-shader_parameter/_rim_size = 0.62800002983
-shader_parameter/_rim_smoothness = 0.146000006935
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_a0f05"]
-material = SubResource("ShaderMaterial_576i8")
-height = 1.0
-cap_bottom = false
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_xqnh6"]
-top_radius = 5.0
-bottom_radius = 5.0
-height = 20.0
-
-[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_plljx"]
-shuffle = true
-stream_count = 9
-stream_0 = ExtResource("7_ggu47")
-stream_1 = ExtResource("8_61pjd")
-stream_2 = ExtResource("9_plljx")
-stream_3 = ExtResource("10_dlp1t")
-stream_4 = ExtResource("11_xqnh6")
-stream_5 = ExtResource("12_wjarl")
-stream_6 = ExtResource("13_qfqyx")
-stream_7 = ExtResource("14_fsfll")
-stream_8 = ExtResource("15_ktw23")
+[ext_resource type="PackedScene" uid="uid://bw502e72qjvhj" path="res://scenes/level.scn" id="3_hroh7"]
+[ext_resource type="PackedScene" uid="uid://v0q3j0iv3ema" path="res://scenes/WorldAudio.scn" id="4_a0f05"]
+[ext_resource type="PackedScene" uid="uid://j11truu83y7c" path="res://scenes/safe_space.tscn" id="4_xnrqy"]
+[ext_resource type="PackedScene" uid="uid://7v535xtrwf4u" path="res://scenes/pause_menu.scn" id="6_3fd14"]
 
 [node name="TestArea" type="Node3D" unique_id=361818705]
 
-[node name="GameController" type="Node3D" parent="." unique_id=591598612]
+[node name="GameController" type="Node3D" parent="." unique_id=591598612 node_paths=PackedStringArray("pauseMenu")]
 process_mode = 3
 script = ExtResource("1_f0p7x")
+pauseMenu = NodePath("../PauseMenu")
 
-[node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=398105729 groups=["lights"]]
+[node name="DirectionalLight" type="DirectionalLight3D" parent="." unique_id=398105729 groups=["vortex"]]
 transform = Transform3D(1, 0, 0, 0, 0.5641171, 0.82569486, 0, -0.82569486, 0.5641171, 0, 13.90426, 0)
 
-[node name="Player" parent="." unique_id=1703939526 instance=ExtResource("1_yldxj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0749397, -3.4276004)
+[node name="Player" parent="." unique_id=1703939526 node_paths=PackedStringArray("calmAudioStream") instance=ExtResource("1_yldxj")]
+transform = Transform3D(-0.7612667, 0, -0.6484388, 0, 1, 0, 0.6484388, 0, -0.7612667, 16.97434, 0.07493973, -28.270819)
+amp = 50.0
+calmAudioStream = NodePath("../WorldSpace/WorldAudio/CalmAudio")
 
-[node name="Level" type="Node3D" parent="." unique_id=644201373]
+[node name="Level" parent="." unique_id=448271882 instance=ExtResource("3_hroh7")]
 
-[node name="Surfaces" type="Node3D" parent="Level" unique_id=1843582771]
+[node name="SafeSpace" parent="Level" unique_id=1106406205 instance=ExtResource("4_xnrqy")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -20.141773, 0, 41.49055)
 
-[node name="Floors" type="Node3D" parent="Level/Surfaces" unique_id=761057724]
+[node name="WorldSpace" parent="." unique_id=1534950771 instance=ExtResource("4_a0f05")]
 
-[node name="NO_Ground" parent="Level/Surfaces/Floors" unique_id=62942153 instance=ExtResource("3_vtm10")]
-
-[node name="NO_Ground2" parent="Level/Surfaces/Floors" unique_id=1893928236 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 0)
-
-[node name="NO_Ground3" parent="Level/Surfaces/Floors" unique_id=30410775 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 0)
-
-[node name="NO_Ground4" parent="Level/Surfaces/Floors" unique_id=1650455184 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
-
-[node name="NO_Ground5" parent="Level/Surfaces/Floors" unique_id=1604412478 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, 20)
-
-[node name="NO_Ground6" parent="Level/Surfaces/Floors" unique_id=225738494 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, 20)
-
-[node name="NO_Ground7" parent="Level/Surfaces/Floors" unique_id=1016370192 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -20)
-
-[node name="NO_Ground8" parent="Level/Surfaces/Floors" unique_id=1423593682 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 0, -20)
-
-[node name="NO_Ground9" parent="Level/Surfaces/Floors" unique_id=496409851 instance=ExtResource("3_vtm10")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0, -20)
-
-[node name="Walls" type="Node3D" parent="Level/Surfaces" unique_id=1750883964]
-
-[node name="NO_Wall" parent="Level/Surfaces/Walls" unique_id=368771854 instance=ExtResource("4_a0f05")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -20, 0, -30)
-
-[node name="NO_Wall2" parent="Level/Surfaces/Walls" unique_id=1280366493 instance=ExtResource("4_a0f05")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -30)
-
-[node name="NO_Wall3" parent="Level/Surfaces/Walls" unique_id=921944740 instance=ExtResource("4_a0f05")]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 20, 0, -30)
-
-[node name="NO_Wall4" parent="Level/Surfaces/Walls" unique_id=83817766 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -30, 0, 20)
-
-[node name="NO_Wall5" parent="Level/Surfaces/Walls" unique_id=141319814 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -30, 0, 0)
-
-[node name="NO_Wall13" parent="Level/Surfaces/Walls" unique_id=480233185 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -11, 0, -3)
-
-[node name="NO_Wall15" parent="Level/Surfaces/Walls" unique_id=663051270 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -21, 0, 7)
-
-[node name="NO_Wall14" parent="Level/Surfaces/Walls" unique_id=2018391020 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -11, 0, 20)
-
-[node name="NO_Wall6" parent="Level/Surfaces/Walls" unique_id=1037955368 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-4.371139e-08, 1, -4.371139e-08, 0, -4.371139e-08, -1, -1, -4.371139e-08, 1.9106855e-15, -30, 0, -20)
-
-[node name="NO_Wall7" parent="Level/Surfaces/Walls" unique_id=1955582753 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 20, 0, 30)
-
-[node name="NO_Wall8" parent="Level/Surfaces/Walls" unique_id=397375346 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, 0, 0, 30)
-
-[node name="NO_Wall9" parent="Level/Surfaces/Walls" unique_id=202582107 instance=ExtResource("4_a0f05")]
-transform = Transform3D(-1, -8.742278e-08, 3.821371e-15, 0, -4.371139e-08, -1, 8.742278e-08, -1, 4.371139e-08, -20, 0, 30)
-
-[node name="NO_Wall10" parent="Level/Surfaces/Walls" unique_id=1849665816 instance=ExtResource("4_a0f05")]
-transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 30, 0, -20)
-
-[node name="NO_Wall11" parent="Level/Surfaces/Walls" unique_id=423233204 instance=ExtResource("4_a0f05")]
-transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 30, 0, 0)
-
-[node name="NO_Wall12" parent="Level/Surfaces/Walls" unique_id=1413764207 instance=ExtResource("4_a0f05")]
-transform = Transform3D(1.3113416e-07, -1, 4.371139e-08, 0, -4.371139e-08, -1, 1, 1.3113416e-07, -5.7320566e-15, 30, 0, 20)
-
-[node name="Objects" type="Node3D" parent="Level" unique_id=693777133]
-
-[node name="StickMan" parent="Level/Objects" unique_id=1643404928 instance=ExtResource("5_xqnh6")]
-transform = Transform3D(0.24369965, 0, 0.9698508, 0, 1, 0, -0.9698508, 0, 0.24369965, -5.350987, 1.9016767, 0)
-
-[node name="Table" type="RigidBody3D" parent="Level/Objects" unique_id=1225141698]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5285574, 0)
-collision_layer = 2
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Level/Objects/Table" unique_id=1539104367]
-shape = SubResource("CylinderShape3D_a0f05")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Level/Objects/Table/CollisionShape3D" unique_id=2051395744]
-material_overlay = ExtResource("5_plljx")
-cast_shadow = 0
-mesh = SubResource("CylinderMesh_a0f05")
-
-[node name="Lights" type="MeshInstance3D" parent="Level/Objects" unique_id=1969853942 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.247341, 8.955757, 14.837822)
-layers = 2
-material_override = ExtResource("8_dlp1t")
-material_overlay = ExtResource("5_plljx")
-mesh = SubResource("CylinderMesh_xqnh6")
-
-[node name="Lights2" type="MeshInstance3D" parent="Level/Objects" unique_id=934899553 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.247341, 8.955757, -1.162178)
-layers = 2
-material_override = ExtResource("8_dlp1t")
-material_overlay = ExtResource("5_plljx")
-mesh = SubResource("CylinderMesh_xqnh6")
-
-[node name="Lights3" type="MeshInstance3D" parent="Level/Objects" unique_id=841874711 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.752659, 8.955757, -21.162178)
-layers = 2
-material_override = ExtResource("8_dlp1t")
-material_overlay = ExtResource("5_plljx")
-mesh = SubResource("CylinderMesh_xqnh6")
-
-[node name="Lights4" type="MeshInstance3D" parent="Level/Objects" unique_id=303657455 groups=["lights"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.752659, 8.955757, 20.837822)
-layers = 2
-material_override = ExtResource("8_dlp1t")
-material_overlay = ExtResource("5_plljx")
-mesh = SubResource("CylinderMesh_xqnh6")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=783590047]
-
-[node name="WorldAudio" type="Node3D" parent="CanvasLayer" unique_id=1869443695]
-
-[node name="ClubAudio" type="AudioStreamPlayer3D" parent="CanvasLayer/WorldAudio" unique_id=779228533]
-stream = SubResource("AudioStreamPlaylist_plljx")
+[node name="CalmAudio" parent="WorldSpace/WorldAudio" parent_id_path=PackedInt32Array(1534950771, 634830263) index="1" unique_id=2055076661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.35794, 0, 40.390163)
 attenuation_model = 3
+volume_db = -12.0
+max_db = -6.0
 autoplay = true
-max_distance = 1000.0
+bus = &"Calm"
+
+[node name="PauseMenu" parent="." unique_id=1696711419 instance=ExtResource("6_3fd14")]
+
+[connection signal="pressed" from="PauseMenu/MarginContainer/CenterContainer/VBoxContainer/Resume" to="GameController" method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/CenterContainer/VBoxContainer/Restart" to="GameController" method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/CenterContainer/VBoxContainer/Quit" to="GameController" method="_on_quit_pressed"]
+
+[editable path="Level"]
+[editable path="Level/Objects/Bar"]
+[editable path="Level/Objects/Vortex4"]
+[editable path="WorldSpace"]
+[editable path="PauseMenu"]

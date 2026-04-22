@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://da2ne3gxnatsh"]
+
+[ext_resource type="PackedScene" uid="uid://dv2fg06aguka3" path="res://assets/mesh/glass_01.glb" id="1_n43nt"]
+[ext_resource type="Material" uid="uid://cpdrtcx8vxrv1" path="res://scenes/materials/flat.tres" id="2_n43nt"]
+[ext_resource type="Material" uid="uid://dpgu65hjeoi8w" path="res://assets/material/outline.tres" id="3_h65a3"]
+
+[node name="glass_01" unique_id=1246866550 instance=ExtResource("1_n43nt")]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+
+[node name="VasoChico" parent="." index="0" unique_id=1080390715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.053892974, 0.27761388, 0.017237067)
+material_override = ExtResource("2_n43nt")
+material_overlay = ExtResource("3_h65a3")
+cast_shadow = 0

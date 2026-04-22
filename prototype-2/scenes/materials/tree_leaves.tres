@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://by5jorgturywj"]
+
+[ext_resource type="Shader" uid="uid://cnlppd2lxti0c" path="res://shaders/sway.gdshader" id="1_tf3n7"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_tf3n7")
+shader_parameter/sway_amount = 0.010000000475
+shader_parameter/sway_scale = 1.0000000475
+shader_parameter/sway_duration = 8.000000379301481
+shader_parameter/sway_direction = Vector3(0.1, 0.1, 0)
+shader_parameter/albedo_color = Color(0.5678239, 0.39606798, 0.2700716, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 1.0
+shader_parameter/specular = 0.5
+shader_parameter/opacity = 1.0

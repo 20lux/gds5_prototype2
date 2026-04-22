@@ -4,6 +4,8 @@ class_name PlayerDrink
 @export_group("Audio Visual Parameters")
 @export var audioPlayer : AudioStreamPlayer3D
 @export var canvas : ShaderMaterial
+var dir = 0
+static var isDrinking : bool = false
 
 @export_group("Player Body Transform Parameters")
 @export var mouth : Node3D
@@ -14,42 +16,48 @@ class_name PlayerDrink
 @export var theVoid : Node3D
 
 var target : Node3D
-var dir : float = 0
 var chaos : float = 1.0
-var radius : float = 0.1
+var radius : float = 1.0
 var attenuation : float = 1.0
-var isDrinking : bool = false
+@export var deprecation : float = 1.0
 
 func _ready() -> void:
 	transform = rightHand.transform
+	canvas.set_shader_parameter("radius", radius)
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_pressed("action", true):
-		target = mouth
-		isDrinking = true
-		dir = 1
-		audioPlayer.play()
+	if !PlayerController.isInVortex:
+		var drink = self.get_children(false)
+		for i in drink.size():
+			drink[i].show()
+
+		if Input.is_action_pressed("action", true):
+			isDrinking = true
+			target = mouth
+			audioPlayer.play()
+			SetDir(1)
+		else:
+			isDrinking = false
+			SetDir(-1)
+			target = rightHand
+			
+		Drink(delta)
 	else:
-		target = rightHand
-		isDrinking = false
-		dir = 0
-		
-	Drink(delta)
+		var drink = self.get_children(false)
+		for i in drink.size():
+			drink[i].hide()
 
+func SetDir(_dir: int):
+	dir = _dir
+	return dir
 
-func ModulateChaos(delta, ch: float,att: float) -> void:
-	clampf(chaos, 0.0, 32.0)
-	clampf(attenuation, 1.0, 5.0)
-	
-	chaos += ch * dir
-	attenuation += att * dir
+func ModulateChaos(ch: float, att: float) -> void:
+	chaos = clampf(chaos + ch * dir, 0.0, 32.0)
+	attenuation = clampf(attenuation + att * dir, 1.0, 5.0)
 	
 	canvas.set_shader_parameter("chaos", chaos)
 	canvas.set_shader_parameter("attenuation", attenuation)
 
 func Drink(delta) -> void:
-	ModulateChaos(delta, 0.0025, 0.01)
+	ModulateChaos(0.025, 0.01)
 	transform = transform.interpolate_with(target.transform, delta * handSpeed)
-
-func SinkIntoTheVoid(delta) -> void:
-	pass
